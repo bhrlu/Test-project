@@ -1,0 +1,70 @@
+// app global css in Sass form
+.container
+  width: 1040px
+  margin-right: auto
+  margin-left: auto
+
+.q-menu
+  border: 1px solid $separator-color
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1)
+
+.q-card
+  border-radius: 8px
+
+.q-field--outlined .q-field__control:before
+  border-color: $grey-4
+
+.q-editor__content:empty:not(:focus):before
+  opacity: 1
+  color: $grey-1
+
+.q-field
+  &__control .q-field--dense
+    height: 40px
+
+  &__control
+    height: 48px
+
+  &__marginal
+    height: 48px
+
+  &__label
+    top:14px
+
+.box-shadow-1
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1)
+
+.q-field--auto-height .q-field__control,
+.q-field--auto-height .q-field__native
+  min-height: 48px
+
+body.desktop .q-focusable:focus > .q-focus-helper,
+body.desktop .q-manual-focusable--focused > .q-focus-helper,
+body.desktop .q-hoverable:hover > .q-focus-helper
+  opacity: 0.05
+
+.rounded-borders-4
+  border-radius: 4px
+
+.rounded-borders-8
+  border-radius: 8px
+
+.rounded-borders-circle
+  border-radius: 50%
+
+.q-dialog
+  &__inner > div
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1)
+
+@media (min-width: 600px)
+  .q-dialog__inner--minimized > div
+    width: 688px
+    max-width: 688px
+
+.q-dialog__backdrop
+  backdrop-filter: blur(10px)
+
+.truncate
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
