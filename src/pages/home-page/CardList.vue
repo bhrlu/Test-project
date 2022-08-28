@@ -6,8 +6,9 @@
       class="col-4"
     >
       <q-card
-        class="shadow-1 full-height"
+        class="shadow-1 full-height cursor-pointer"
         bordered
+        @click="$router.push({ name: 'Course' })"
       >
         <q-img
           :src="card.cover"

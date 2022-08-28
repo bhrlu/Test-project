@@ -4,6 +4,15 @@
       <div class="container">
         <q-toolbar class="row reverse justify-between">
           <q-toolbar-title class="row reverse">
+            <q-btn
+              :icon="roundAccountCircle"
+              flat
+              dense
+              size="16px"
+              round
+              class="q-ml-xl"
+              @click="loadDialog"
+            />
             <a
               href="/"
               class="q-link text-white"
@@ -18,6 +27,7 @@
               flat
               no-caps
               :label="menu.label"
+              :to="menu.link"
             />
           </div>
         </q-toolbar>
@@ -43,6 +53,7 @@
                 flat
                 no-caps
                 :label="menu.label"
+                :to="menu.link"
               />
             </div>
           </div>
@@ -54,20 +65,36 @@
 
 <script setup>
 import { } from 'vue'
+import { useQuasar } from 'quasar'
+
+import { roundAccountCircle } from '@quasar/extras/material-icons-round'
+
+const $q = useQuasar()
 
 const menuList = [
   {
-    label: 'Home'
+    label: 'Home',
+    link: { name: 'Home' }
+  },
+  // {
+  //   label: 'Category'
+  // },
+  {
+    label: 'About Us',
+    link: { name: 'AboutUs' }
   },
   {
-    label: 'Category'
-  },
-  {
-    label: 'About Us'
-  },
-  {
-    label: 'Contact Us'
+    label: 'Contact Us',
+    link: { name: 'ContactUs' }
   }
 ]
+
+const loadDialog = async () => {
+  const Dialog = await import('pages/register/IndexPage.vue')
+
+  $q.dialog({
+    component: Dialog.default
+  })
+}
 
 </script>
