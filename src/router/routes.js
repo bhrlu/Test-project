@@ -23,6 +23,11 @@ const routes = [
         path: 'contact',
         name: 'ContactUs',
         component: () => import('pages/ContactUs.vue')
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('pages/user-profile/IndexPage.vue')
       }
     ]
   },

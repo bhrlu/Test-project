@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-col-gutter-xl">
+  <div class="row q-col-gutter-md">
     <div
       v-for="(card, index) in cardList"
       :key="index"
