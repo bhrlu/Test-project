@@ -31,10 +31,26 @@ const routes = [
       }
     ]
   },
+  // {
+  //   path: '/admin',
+  //   component: () => import('layouts/AuthtenticatonLayout.vue'),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
   {
     path: '/admin',
-    component: () => import('layouts/AuthtenticatonLayout.vue')
-
+    component: () => import('layouts/AuthtenticatonLayout.vue'),
+    children: [
+      {
+        path: 'admin/products',
+        name: 'Products',
+        meta: {
+          requiresAuth: true
+        },
+        component: () => import('pages/products/IndexPage.vue')
+      }
+    ]
   },
   {
     path: '/login',

@@ -1,4 +1,4 @@
 export const API_URL_ADMIN = {
-  login: '/admin/login',
+  login: '/admin/login/',
   user: ''
 }

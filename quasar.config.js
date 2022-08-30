@@ -9,6 +9,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers')
+// const path = require('path')
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -28,7 +29,10 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
-      'axios'
+      // 'i18n',
+      'axios',
+      'authentication',
+      'dayjs'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -47,7 +51,7 @@ module.exports = configure(function (/* ctx */) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font' // optional, you are not bound to it
-      // 'material-icons' // optional, you are not bound to it
+      // 'material-icons', // optional, you are not bound to it
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
@@ -72,12 +76,16 @@ module.exports = configure(function (/* ctx */) {
       // minify: false,
       // polyfillModulePreload: true,
       // distDir
-
-      // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
       // vitePlugins: [
-      //   [ 'package-name', { ..options.. } ]
+      //   ['@intlify/vite-plugin-vue-i18n', {
+      //     // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+      //     // compositionOnly: false,
+
+      //     // you need to set i18n resource including paths !
+      //     include: path.resolve(__dirname, './src/i18n/**')
+      //   }]
       // ]
     },
 
@@ -85,11 +93,10 @@ module.exports = configure(function (/* ctx */) {
     devServer: {
       // https: true
       open: true, // opens browser window automatically
-      Proxy: {
-        'back-end': {
-          target: 'http://localhost:8000',
-          secure: false
-        }
+      watchOptions: {
+        poll: 1000 // Check for changes every second
+      },
+      proxy: {
 
       }
     },
@@ -98,7 +105,7 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {},
 
-      // iconSet: 'material-icons', // Quasar icon set
+      iconSet: 'svg-material-icons-round', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
@@ -109,7 +116,8 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Dialog',
+      plugins: [
+        'Dialog',
         'Notify',
         'LocalStorage'
       ]
@@ -200,7 +208,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'basiclearn'
+        appId: 'client-app'
       }
     },
 

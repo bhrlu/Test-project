@@ -4,7 +4,7 @@ import { LocalStorage } from 'quasar'
 import { api } from 'boot/axios'
 import { API_URL_ADMIN } from 'src/api-url'
 
-export const useCounterStore = defineStore('counter', {
+export const useAppStore = defineStore('app', {
   state: () => ({
     token: LocalStorage.getItem('token') || null,
     user: {}

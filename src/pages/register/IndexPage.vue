@@ -4,7 +4,7 @@
     persistent
     @hide="onDialogHide"
   >
-    <q-card class="card-width">
+    <q-card class="card-width-scope">
       <q-card-section>
         <div class="flex justify-end q-mb-md">
           <q-btn
@@ -58,7 +58,7 @@ const tabs = ref('LogIn')
 </script>
 
 <style lang="sass" scoped>
-.card-width
+.card-width-scope
   width: 496px
   max-width: 496px
 

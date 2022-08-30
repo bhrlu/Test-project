@@ -6,7 +6,10 @@
         style="width: 400px"
       >
         <q-card-section>
-          <q-form class="q-col-gutter-md">
+          <q-form
+            class="q-col-gutter-md"
+            @submit.prevent="login"
+          >
             <div class="text-center">
               <div class="text-h4">
                 Welcome
@@ -17,7 +20,10 @@
               <q-input
                 v-model="form.username"
                 dense
+                :rules="[requiredRule]"
+                lazy-rules
                 outlined
+                hide-bottom-space
               />
             </div>
             <div>
@@ -26,6 +32,9 @@
                 v-model="form.password"
                 dense
                 outlined
+                :rules="[requiredRule]"
+                lazy-rules
+                hide-bottom-space
               />
             </div>
             <div>
@@ -34,7 +43,9 @@
                 class="full-width"
                 label="Log In"
                 padding="12px 0"
+                type="submit"
                 unelevated
+                :loading="loading"
               />
             </div>
           </q-form>
@@ -47,12 +58,37 @@
 <script setup>
 import { ref } from 'vue'
 
+import { api } from 'boot/axios'
+import { useAppStore } from 'src/stores/app-store'
+import { requiredRule } from 'src/utils'
+import { API_URL_ADMIN } from 'src/api-url'
+import { useRouter } from 'vue-router'
+
 const form = ref({
   username: null,
-  password: null
+  password: null,
+  remember_me: 1
 })
+const loading = ref(false)
+const store = useAppStore()
+const router = useRouter()
 
-// const login = () => {
+const login = async () => {
+  try {
+    loading.value = true
+    // const body = new FormData()
+    // body.append('username', form.value.username)
+    // body.append('password', form.value.password)
+    // body.append('remember_me', form.value.remember_me)
 
-// }
+    const { data } = await api.post(API_URL_ADMIN.login, form.value)
+    store.setToken(data.data.access)
+    // console.log(data.data)
+    router.push({ name: 'Products' })
+  }
+  finally {
+    loading.value = false
+  }
+}
+
 </script>
